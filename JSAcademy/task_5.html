@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .container>.child{
+            background-color: #c1e8f5;
+            color: #ffffff;
+            height: 60px;
+            text-align: center;
+            font-size: 48px;
+            float: left;
+            margin:5px;
+        }
+        .container .find{
+            background-color: #ffffff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <textarea>type here</textarea>
+    <button>插入</button>
+    <input />
+    <button>查询</button>
+    <div class="container"></div>
+<script>
+    /*
+     *  getElementsByTagName的返回值是一个集合，可以用角标获取元素
+     *      textarea用valu获取文本值               text.value  text.innerText  text.innerHTML  text.textContent
+     *     有个有趣的点   chrome@59.0.3071.115
+     *    当一开始就在html里给textarea写入文本时， 依次：有值，无值，有，有======》（修改textarea文本后）value改变，其他两个依旧保持原值
+     *
+     * 表单里头的dom元素都可以用value
+     */
+    var text=document.getElementsByTagName('textarea')[0],
+        inputSearch=document.getElementsByTagName('input')[0],
+        insert=document.getElementsByTagName('button')[0],
+        search=document.getElementsByTagName('button')[1],
+        container=document.getElementsByTagName('div')[0];
+
+    /**
+     *  添加
+     */
+    insert.onclick=function () {
+        addText(text,container);
+    };
+    function addText(text,cNode) {
+       if (!text.value){
+           alert('控制不予添加');
+           console.log(text.value);
+           return;
+       }
+       var div=document.createElement('div');
+           div.className='child';
+           div.innerText=text.value;
+           cNode.appendChild(div);
+    }
+    /**
+     *  搜索      使用了replace      注意该方法返回一个新字符串，另外用innerHTML才能使span标签工作
+     */
+    search.onclick=function () {
+        searchText(inputSearch.value,container);
+    };
+    function searchText(str,cNode) {
+        if (!str){
+            alert('请输入搜索内容');
+            return;
+        }
+        var reg=new RegExp(str,'g'),
+            child=cNode.children;
+        for(var i=0;i<child.length;i++){
+            console.log(child[i].innerText);
+            child[i].innerHTML=child[i].innerText.toString().replace(reg,"<span class='find'>"+str+"</span>");
+        }
+    }
+</script>
+</body>
+</html>

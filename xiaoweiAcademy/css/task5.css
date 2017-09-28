@@ -1,0 +1,154 @@
+body{
+    background-color: #0e0e0e;
+}
+div.container{
+    margin:0px 35px;
+    background-color: #dedede;
+}
+.header{
+    height: 60px;
+    width:auto;
+    border: 1px solid;
+    background-color: #333333;
+}
+.header>img{
+    margin-top: 9px;
+}
+div.header>ul{
+    float: right;
+}
+div.header>ul>li{
+    float: left;
+    padding-right:30px;/* 与下一行代码效果相同*/
+    /*margin-left: 25px;*/
+    top:50%;
+    color: #ffffff;
+}
+/*---------------*/
+.main{
+    margin: 22px 22px;
+    overflow: auto;
+}
+.right{
+    width:365px;
+    height: 500px;
+    float:right;
+    background-color: #ffffff;
+}
+.right>h4{
+    border-left: 3px solid #cbc;
+    padding: 15px;
+    margin-left: 20px;
+}
+.right>table{
+   margin-left: 35px;
+    font-size: 14px;
+    /*border-collapse:separate;*/
+    /*border-spacing:0px 10px ;*/
+
+}
+.right>table tr td:first-child{
+    text-align: right;
+}
+.right>table tr td:nth-child(2){
+    padding:4px 10px;
+}
+.right>table tr:first-child td{
+    padding-top: 0px;
+}
+/*这里选择器可以看看*/
+.right>table tr:nth-child(2) td:nth-child(2),
+.right>table tr:nth-child(5) td:nth-child(2){
+    padding-top: 0px;
+    font-size: 8px;
+    font-style: italic;
+}
+.right>table tr:nth-child(9) td:first-child{
+    vertical-align: top;
+}
+.right table tr td textarea{
+    width: 100%;
+    height: 100px;
+}
+.right>table button{
+    background-color: #3355d0;
+    color: #ffffff;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 8px
+}
+/*content左区*/
+.container>.main>.content{
+    margin-top: -20px;
+   margin-right: 370px;
+}
+.content>.one{
+    background-color: #fff;
+}
+.content>.one>div.image{
+    width:50%;
+    height: 0;
+    background-image: url("../images/tree.jpg");
+    padding-bottom:40%;
+    padding-right: 8%;
+}
+.content>.three{
+    margin-top: 10px;
+    background-color: #fff;
+}
+.content>.three>div.tenImages{
+    overflow: auto;
+    margin-right:230px;
+    margin-left: 30px;
+}
+.content>.three>div>div{
+    float: left;
+    border:1px solid #dedede;
+    margin:5px 20px 5px 15px;
+    background: #fff;
+}
+.content>.three>p{
+    margin-left: 20px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+.content>.three>div>div>p{
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.content>.four{
+
+    background-color: #ffffff;
+}
+.content>.four>table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #dedede;
+    width:100%;
+}
+.content>.four>table>thead{
+    color: #fff;
+    border: 1px solid #dedede;
+    background-color: #333333;
+}
+.content>.four>table td{
+    border: 1px solid #cccccc;
+}
+.content>.four>table>tbody tr:last-child{
+    background-color: #cccccc;
+}
+.bottom{
+    color: #ffffff;
+    background-color: #000000;
+    width:100%;
+    height: 60px;
+    display: table;
+}
+.bottom>div{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}

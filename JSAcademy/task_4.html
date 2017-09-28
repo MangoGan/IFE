@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .container .child{
+            background-color: #1b89bf;
+            color: #ffffff;
+            width: 90px;
+            height: 90px;
+            margin-left: 10px;
+            margin-right:10px;
+            float: left;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input />
+    <button class="leftIn">左侧入</button>
+    <button class="rightIn">右侧入</button>
+    <button class="leftOut">左侧出</button>
+    <button class="rightOut">右侧出</button>
+    <div class="container"></div>
+<script>
+    var input=document.getElementsByTagName('input')[0],
+        leftIn=document.getElementsByClassName('leftIn')[0],
+        rightIn=document.getElementsByClassName('rightIn')[0],
+        leftOut=document.getElementsByClassName('leftOut')[0],
+        rightOut=document.getElementsByClassName('rightOut')[0],
+        containerNode=document.getElementsByClassName('container')[0];
+/*
+* 事件委托
+* 事件监听，事件委托机制
+* addEventListener 默认为冒泡机制(false)，event.stopPropagation()阻止冒泡
+* */
+    containerNode.addEventListener('click',function (event) {
+        var target=event.target;
+        if (target.nodeName=="DIV"){
+            alert(target.parentNode.removeChild(target).innerText);
+        }
+    });
+    leftIn.onclick=function(){method('left',containerNode,'add');};
+    leftOut.onclick=function(){method('left',containerNode,'delete');};
+    rightIn.onclick=function(){method('right',containerNode,'add');};
+    rightOut.onclick=function(){method('right',containerNode,'delete');};
+    /**
+     *
+     * @param direction     left or right
+     * @param containerNode     default .container
+     * @param behaviour     add or delete
+     */
+    function method(direction,containerNode,behaviour) {
+            if (behaviour=='add'){
+                    add(direction,containerNode);
+            }else if (behaviour=='delete'){
+                dele(direction,containerNode);
+            }else {
+                console.log('形参错误');
+            }
+    }
+    /**
+     * 插入节点     考虑parentNode.children.length==0
+     *              设置class el.setAttribute('class',name)//ie6/7不支持
+     *                       el.serAttribute('className',name)//ie6&7 支持，其他不支持
+     *                       el.className='aaa'     全支持
+     * @param dir
+     * @param cNode
+     */
+    function add(dir,cNode) {
+        if(!input.value) {
+            alert('空值不添加');
+            return;
+        }
+        var div=document.createElement('div');
+            div.innerText=input.value;
+            div.className='child';
+        if (dir=='left'){
+            if (cNode.children.length==0) cNode.appendChild(div);
+            else    cNode.insertBefore(div,cNode.children[0]);
+        }else if(dir=='right'){
+             cNode.appendChild(div);
+        }else console.log('dir error')
+    }
+    /**
+     *  删除              很遗憾，删除元素需要知道元素本身及其父元素，不过可以使用子元素的parentNode属性。
+     * @param dir
+     * @param cNode     parentNode.removeChild(node)需要先判断node的类型(nodeType==1)再delete,以兼容IE和Mozilla
+     */
+   function dele(dir,cNode) {
+       if (!cNode.children.length) {
+           alert('container has nothing');
+           return;
+       }
+       if (dir=='left'){
+           alert(cNode.removeChild(cNode.firstChild).innerText);
+       }else if(dir=='right'){
+           alert(cNode.removeChild(cNode.lastChild).innerText)
+       } else console.log('dir error');
+   }
+
+</script>
+</body>
+</html>
