@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0 user-scalabel=no">
+    <title>Flex</title>
+    <style>
+        html{
+            height:100%;
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            display: -webkit-flex;/*兼容webkit*/
+        }
+        .container div{
+            width: 150px;
+            margin: 10px 0;/*这里把padding改为margin了*/
+            border:1px solid #f00;
+        }
+        .one{height:120px;}
+        .two{height: 100px}
+        .three{height:40px;}
+        div.four{
+            height:200px;
+            border:1px solid #00f;
+        }
+        @media screen and (min-width: 641px){
+            .container{
+                align-items: center;
+                justify-content:space-between;
+            }
+        }
+        @media screen and (max-width: 640px){
+            .container{
+                align-items:flex-start;
+                justify-content:space-between;
+                flex-wrap:wrap ;
+            }
+            div.four{
+                order:-1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+    </div>
+</body>
+</html>
